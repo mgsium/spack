@@ -30,11 +30,16 @@ class Op2Dsl(MakefilePackage, CudaPackage):
     variant(
         "scotch", default=True, when="+mpi", description="Enable PT-Scotch partitioning support"
     )
+    
+    variant(
+        "kahip", default=True, when="+mpi", description="Enable KaHIP partitioning support"
+    )
 
     depends_on("mpi", when="+mpi")
 
     depends_on("parmetis", when="+parmetis")
     depends_on("scotch", when="+scotch")
+    depends_on("kahip", when="+kahip")
 
     depends_on("hdf5+fortran+mpi", when="+mpi")
     depends_on("hdf5+fortran~mpi", when="~mpi")
